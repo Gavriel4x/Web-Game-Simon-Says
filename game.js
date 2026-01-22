@@ -45,22 +45,16 @@ $(document).keypress(function(){
   }
 });
 
-// Touch handler for mobile - any tap on screen starts game
-$(document).on("touchstart", function(){
-
-  if (!started) {
-
-    $("#level-title").text("Level " + level);
-    nextSequence();
-    started = true;
-  }
-});
-
 var userClickedPattern = [];
 //User Clicks and handler
 $(".btn").on("click", function() {
 
-    if(started){
+    if(!started){
+        $("#level-title").text("Level " + level);
+        nextSequence();
+        started = true;
+    }
+    else if(started){
         var userChosenColour = $(this).attr("id");
         
         userClickedPattern.push(userChosenColour);
@@ -76,7 +70,7 @@ $(".btn").on("click", function() {
                 $("body").removeClass("game-over");
             }, 200);
 
-            $("#level-title").text("Game Over, Press Any Key to Restart");
+            $("#level-title").text("Game Over, Press Any Key / Button to Restart");
             startOver();
             return;
         }
