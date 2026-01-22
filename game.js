@@ -34,8 +34,19 @@ function animatePress(currentColour){
 }
 
 
-//Keypress handler
+//Keypress handler if pressed to start the game any button
 $(document).keypress(function(){
+
+  if (!started) {
+
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
+});
+
+// Touch handler for mobile - any tap on screen starts game
+$(document).on("touchstart", function(){
 
   if (!started) {
 
